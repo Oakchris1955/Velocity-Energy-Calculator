@@ -18,11 +18,11 @@ def to_int(string: str, istype: str):
 		return output
 
 if args_len >= 1:
-	velocity = sys.argv[0]
+	velocity = to_int(sys.argv[0], "velocity")
 else:
 	velocity = to_int(input("Please enter object's velocity in meters per second: "), "velocity")
 if args_len >= 2:
-	mass = sys.argv[1]
+	mass = to_int(sys.argv[1], "mass")
 else:
 	mass = to_int(input("Please enter object's mass in kilograms: "), "mass")
 
