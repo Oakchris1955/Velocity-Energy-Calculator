@@ -26,7 +26,7 @@ if args_len >= 2:
 else:
 	mass = to_int(input("Please enter object's mass in kilograms: "), "mass")
 
-print(f"Velocity: {velocity}\nMass: {mass}")
+print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 
 print("Calculating...")
 
@@ -36,10 +36,10 @@ try:
 	total_energy = (lorentz_factor-1)*mass*speed_of_light**2
 except ValueError as err:
 	if velocity >= speed_of_light:
-		raise Exception(f"Velocity must be less than the speed of light ({speed_of_light})")
+		raise Exception("Velocity must be less than the speed of light ({:,})".format(speed_of_light))
 	else:
 		raise err
 except Exception as err:
 	raise err
 else:
-	print(f"Total energy in Joules required to accelarate an object of {mass}kg at {velocity}m/s is {round(total_energy, 2)} Joules rounded to the first 2 decimals")
+	print("Total energy in Joules required to accelarate an object of {:,}kg at {:,}m/s is {:,} Joules rounded to the first 2 decimals".format(mass, velocity, round(total_energy, 2)))
