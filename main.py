@@ -10,6 +10,8 @@ speed_of_light = 299_792_458
 def to_int(string: str, istype: str):
 	try:
 		output = int(string)
+		if output < 0:
+			raise ValueError("{istype} should be above zero")
 	except ValueError:
 		raise Exception(f"Invalid literal for {istype}")
 	else:
