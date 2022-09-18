@@ -1,5 +1,6 @@
 import sys
 import math
+from decimal import * 
 
 sys.argv.pop(0)
 args_len = len(sys.argv)
@@ -28,7 +29,9 @@ print(f"Velocity: {velocity}\nMass: {mass}")
 print("Calculating...")
 
 try:
-	total_energy = mass*velocity/math.sqrt(1-(velocity**2/speed_of_light**2))
+	lorentz_factor = 1/math.sqrt(1-velocity**2/speed_of_light**2)
+	lorentz_factor = 1/(Decimal(1)-(Decimal(velocity)/Decimal(speed_of_light))**2).sqrt()
+	total_energy = (lorentz_factor-1)*mass*speed_of_light**2
 except ValueError as err:
 	if velocity >= speed_of_light:
 		raise Exception(f"Velocity must be less than the speed of light ({speed_of_light})")
@@ -37,4 +40,4 @@ except ValueError as err:
 except Exception as err:
 	raise err
 else:
-	print(f"Total energy in Joules required to accelarate an object of {mass}kg at {velocity}m/s is {total_energy} Joules")
+	print(f"Total energy in Joules required to accelarate an object of {mass}kg at {velocity}m/s is {round(total_energy, 2)} Joules rounded to the first 2 decimals")
