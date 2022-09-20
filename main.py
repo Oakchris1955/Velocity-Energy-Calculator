@@ -7,9 +7,9 @@ args_len = len(sys.argv)
 
 speed_of_light = 299_792_458
 
-def to_int(string: str, istype: str):
+def to_decimal(string: str, istype: str) -> Decimal:
 	try:
-		output = int(string)
+		output = Decimal(string)
 		if output < 0:
 			raise ValueError("{istype} should be above zero")
 	except ValueError:
@@ -18,13 +18,13 @@ def to_int(string: str, istype: str):
 		return output
 
 if args_len >= 1:
-	velocity = to_int(sys.argv[0], "velocity")
+	velocity = to_decimal(sys.argv[0], "velocity")
 else:
-	velocity = to_int(input("Please enter object's velocity in meters per second: "), "velocity")
+	velocity = to_decimal(input("Please enter object's velocity in meters per second: "), "velocity")
 if args_len >= 2:
-	mass = to_int(sys.argv[1], "mass")
+	mass = to_decimal(sys.argv[1], "mass")
 else:
-	mass = to_int(input("Please enter object's mass in kilograms: "), "mass")
+	mass = to_decimal(input("Please enter object's mass in kilograms: "), "mass")
 
 print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 
