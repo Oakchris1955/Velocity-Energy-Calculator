@@ -31,7 +31,6 @@ print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 print("Calculating...")
 
 try:
-	lorentz_factor = 1/math.sqrt(1-velocity**2/speed_of_light**2)
 	lorentz_factor = 1/(Decimal(1)-(Decimal(velocity)/Decimal(speed_of_light))**2).sqrt()
 	total_energy = (lorentz_factor-1)*mass*speed_of_light**2
 except ValueError as err:
