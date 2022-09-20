@@ -38,6 +38,9 @@ except ValueError as err:
 		raise Exception("Velocity must be less than the speed of light ({:,})".format(speed_of_light))
 	else:
 		raise err
+except ZeroDivisionError as err:
+	if velocity >= speed_of_light:
+		raise Exception("Velocity must be less than the speed of light ({:,})".format(speed_of_light))
 except Exception as err:
 	raise err
 else:
