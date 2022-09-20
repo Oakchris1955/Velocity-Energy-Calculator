@@ -5,7 +5,7 @@ from decimal import *
 sys.argv.pop(0)
 args_len = len(sys.argv)
 
-speed_of_light = 299_792_458
+SPEED_OF_LIGHT = 299_792_458
 
 def to_decimal(string: str, istype: str) -> Decimal:
 	try:
@@ -31,16 +31,16 @@ print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 print("Calculating...")
 
 try:
-	lorentz_factor = 1/(Decimal(1)-(Decimal(velocity)/Decimal(speed_of_light))**2).sqrt()
-	total_energy = (lorentz_factor-1)*mass*speed_of_light**2
+	lorentz_factor = 1/(Decimal(1)-(Decimal(velocity)/Decimal(SPEED_OF_LIGHT))**2).sqrt()
+	total_energy = (lorentz_factor-1)*mass*SPEED_OF_LIGHT**2
 except ValueError as err:
-	if velocity >= speed_of_light:
-		raise Exception("Velocity must be less than the speed of light ({:,})".format(speed_of_light))
+	if velocity >= SPEED_OF_LIGHT:
+		raise Exception("Velocity must be less than the speed of light ({:,})".format(SPEED_OF_LIGHT))
 	else:
 		raise err
 except ZeroDivisionError as err:
-	if velocity >= speed_of_light:
-		raise Exception("Velocity must be less than the speed of light ({:,})".format(speed_of_light))
+	if velocity >= SPEED_OF_LIGHT:
+		raise Exception("Velocity must be less than the speed of light ({:,})".format(SPEED_OF_LIGHT))
 except Exception as err:
 	raise err
 else:
