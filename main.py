@@ -25,6 +25,10 @@ if args_len >= 2:
 	mass = to_decimal(sys.argv[1], "mass")
 else:
 	mass = to_decimal(input("Please enter object's mass in kilograms: "), "mass")
+if args_len >= 3:
+	getcontext().prec = sys.argv[2]
+else:
+	getcontext().prec = 100
 
 print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 
