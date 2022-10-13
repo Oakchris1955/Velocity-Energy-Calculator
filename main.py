@@ -6,6 +6,16 @@ sys.argv.pop(0)
 args_len = len(sys.argv)
 
 SPEED_OF_LIGHT = 299_792_458
+MILL_NAMES = ['',' Thousand',' Million',' Billion',' Trillion', " Quadrillion", " Quintillion", " Sextillion", " Septtillion"]
+
+def millify(n):
+	'''Function obtained from https://stackoverflow.com/a/3155023'''
+
+	n = float(n)
+	millidx = max(0,min(len(MILL_NAMES)-1,
+						int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
+
+	return '{:,.0f}{}'.format(n / 10**(3 * millidx), MILL_NAMES[millidx])
 
 def to_decimal(string: str, istype: str) -> Decimal:
 	try:
@@ -48,4 +58,4 @@ except ZeroDivisionError as err:
 except Exception as err:
 	raise err
 else:
-	print("Total energy in Joules required to accelarate an object of {:,}kg at {:,}m/s is {:,} Joules rounded to the first 2 decimals".format(mass, velocity, round(total_energy, 2)))
+	print("Total energy in Joules required to accelarate an object of {:,}kg at {:,}m/s is {} Joules or {:,} Joules rounded to the first 2 decimals".format(mass, velocity, millify(total_energy), round(total_energy, 2)))
