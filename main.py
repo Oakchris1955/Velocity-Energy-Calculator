@@ -1,9 +1,20 @@
-import sys
+import argparse
 import math
 from decimal import * 
 
-sys.argv.pop(0)
-args_len = len(sys.argv)
+PRECISION = 100
+
+parser = argparse.ArgumentParser(description ='Calculate the energy required to accelerate an object by taking into account relativity')
+
+parser.add_argument("velocity", type=int, help="The velocity to accelerate the object to")
+parser.add_argument("mass", type=int, help="The mass of the object to accelerate")
+parser.add_argument("--precision", "-p", type=int, default=PRECISION, help=f"The precision of the decimal digits when doing mathematical operations (defaults to {PRECISION})")
+
+args = parser.parse_args()
+
+mass = args.mass
+velocity = args.velocity
+getcontext().prec = args.precision
 
 SPEED_OF_LIGHT = 299_792_458
 MILL_NAMES = ['',' Thousand',' Million',' Billion',' Trillion', " Quadrillion", " Quintillion", " Sextillion", " Septtillion"]
@@ -26,19 +37,6 @@ def to_decimal(string: str, istype: str) -> Decimal:
 		raise Exception(f"Invalid literal for {istype}")
 	else:
 		return output
-
-if args_len >= 1:
-	velocity = to_decimal(sys.argv[0], "velocity")
-else:
-	velocity = to_decimal(input("Please enter object's velocity in meters per second: "), "velocity")
-if args_len >= 2:
-	mass = to_decimal(sys.argv[1], "mass")
-else:
-	mass = to_decimal(input("Please enter object's mass in kilograms: "), "mass")
-if args_len >= 3:
-	getcontext().prec = sys.argv[2]
-else:
-	getcontext().prec = 100
 
 print("Velocity: {:,}\nMass: {:,}".format(velocity, mass))
 

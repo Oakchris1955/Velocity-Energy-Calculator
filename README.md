@@ -10,4 +10,4 @@ A simple Python program to calculate kinetic energy according to Einstein's Theo
 
 ## Usage
 
-Either run the program directly and input the parameters or pass them via the command line (first argument is velocity, second is mass)
+Pass the arguments via the command line (first argument is velocity, second is mass, for more info run the program with the `--help` flag)
